@@ -1,0 +1,46 @@
+#!/bin/bash
+
+PROJECT_DIR=""
+PROJECT=""
+
+while getopts ":p:d:" opt; do
+    case $opt in
+        p)
+            PROJECT="$OPTARG"
+            ;;
+        d)
+            PROJECT_DIR="$OPTARG"
+            ;;
+    esac
+done
+
+echo $PROJECT
+echo $PROJECT_DIR
+
+if [ -z "$PROJECT" ]; then
+    echo "PROJECT is empty"
+    exit 1
+fi
+
+if [ -z "$PROJECT_DIR" ]; then
+    echo "PROJECT_DIR is empty"
+    exit 1
+fi
+
+kinetis-design-studio \
+    -nosplash \
+    -application org.eclipse.cdt.managedbuilder.core.headlessbuild \
+    -data /tmp/wsp \
+    -import $PROJECT_DIR \
+    -cleanBuild $PROJECT \
+    --launcher.ini kinetis-design-studio.ini \
+    --launcher.suppressErrors
+
+exit $?
+
+
+
+
+
+
+
