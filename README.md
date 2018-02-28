@@ -18,6 +18,15 @@ Where `<solutiondir>` is the folder containing the project to build. `<projectdi
 to the folder containing the actual project and `<project>` is the name and configuration of
 the project, ie. `name/debug`.
 
+It may be necessary to mount the passwd and group folder from the host system. This is only
+if there is a permission issue when building projects with the docker container. To mount
+the folders, add these flags to the `run` call:
+
+```
+-v /etc/passwd:/etc/passwd:ro
+-v /etc/group:/etc/group:ro
+```
+
 ## Building base image
 
 The kinetis design studio .deb file must be supplied with the docker build command, since

@@ -18,7 +18,7 @@ RUN dpkg --unpack kds.deb
 RUN rm kds.deb
 
 ADD kds /usr/local/bin/kds
-RUN chmod +x /usr/local/bin/kds
+RUN chmod a+rwx /usr/local/bin/kds
 
 ENV PATH="${KDS_DIR}/bin/:${PATH}"
 ENV PATH="${KDS_DIR}/eclipse/:${PATH}"
